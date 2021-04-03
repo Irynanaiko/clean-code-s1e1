@@ -10,7 +10,7 @@
 
 var taskInput=document.getElementById("new-task");//Add a new task.
 var addButton=document.getElementsByTagName("button")[0];//first button
-var incompleteTaskHolder=document.getElementById("incompleteTasks");//ul of #incompleteTasks
+var incompleteTaskHolder=document.querySelector(".incomplete-tasks");//ul of #incompleteTasks
 var completedTasksHolder=document.getElementById("completed-tasks");//completed-tasks
 
 
@@ -32,19 +32,22 @@ var createNewTaskElement=function(taskString){
     var deleteButton=document.createElement("button");//delete button
     var deleteButtonImg=document.createElement("img");//delete button image
 
+    // listItem.className='list-item';
     label.innerText=taskString;
-    label.className='task';
+    label.className='list-item__task';
 
     //Each elements, needs appending
     checkBox.type="checkbox";
     editInput.type="text";
-    editInput.className="task";
+    editInput.className="task__text";
+    // editInput.className="task__none";
 
     editButton.innerText="Edit"; //innerText encodes special characters, HTML does not.
     editButton.className="edit";
 
     deleteButton.className="delete";
     deleteButtonImg.src='./remove.svg';
+    deleteButtonImg.className="delete__img";
     deleteButton.appendChild(deleteButtonImg);
 
 
@@ -91,6 +94,7 @@ var editTask=function(){
 
         //switch to .editmode
         //label becomes the inputs value.
+        label.className="list-item__task";
         label.innerText=editInput.value;
         editBtn.innerText="Edit";
     }else{
